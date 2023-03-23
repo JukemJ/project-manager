@@ -4,7 +4,7 @@ const Post = require("../models/Post");
 module.exports = {
   getProfile: async (req, res) => {
     try {
-      const posts = await Post.find({ user: req.user.id });
+      const posts = await Post.find({ assigned: req.user.id });
       res.render("profile.ejs", { posts: posts, user: req.user });
     } catch (err) {
       console.log(err);
@@ -33,7 +33,8 @@ module.exports = {
         caption: req.body.caption,
         likes: 0,
         author: req.user.id,
-        completed: false
+        completed: false,
+        assigned: [req.user.id]
       });
       console.log("Post has been added!");
       res.redirect("/profile");
@@ -54,7 +55,8 @@ module.exports = {
         caption: req.body.caption,
         likes: 0,
         author: req.user.id,
-        completed: false
+        completed: false,
+        assigned: [req.user.id]
       });
       console.log("Post has been added!");
       res.redirect("/profile");
@@ -62,15 +64,29 @@ module.exports = {
       console.log(err);
     }
   },
-  likePost: async (req, res) => {
+  markAsIncomplete: async (req, res) => {
     try {
       await Post.findOneAndUpdate(
         { _id: req.params.id },
         {
-          $inc: { likes: 1 },
+          completed: false
         }
       );
-      console.log("Likes +1");
+      console.log("Marked Incomplete!");
+      res.redirect(`/post/${req.params.id}`);
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  markAsComplete: async (req, res) => {
+    try {
+      await Post.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+          completed: true
+        }
+      );
+      console.log("Marked Complete!");
       res.redirect(`/post/${req.params.id}`);
     } catch (err) {
       console.log(err);
@@ -81,12 +97,15 @@ module.exports = {
       // Find post by id
       let post = await Post.findById({ _id: req.params.id });
       // Delete image from cloudinary
-      await cloudinary.uploader.destroy(post.cloudinaryId);
+      if(post.cloudinaryId){    //checking if cloudinaryID exists
+        await cloudinary.uploader.destroy(post.cloudinaryId);
+      }
       // Delete post from db
-      await Post.remove({ _id: req.params.id });
+      await Post.deleteOne({ _id: req.params.id });
       console.log("Deleted Post");
       res.redirect("/profile");
     } catch (err) {
+      console.log(err)
       res.redirect("/profile");
     }
   }

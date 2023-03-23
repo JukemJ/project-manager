@@ -11,7 +11,8 @@ router.post("/createPost", upload.none(), postsController.createPost);
 
 router.post("/createPostWithImage", upload.single("file"),postsController.createPostWithImage);
 
-router.put("/likePost/:id", postsController.likePost);
+router.put("/markAsComplete/:id", postsController.markAsComplete);
+router.put("/markAsIncomplete/:id", postsController.markAsIncomplete);
 
 router.delete("/deletePost/:id", postsController.deletePost);
 

@@ -9,6 +9,7 @@
               <li class="col-6 justify-content-between mt-5">
                 <a href="/post/<%= posts[i]._id%>">
                   <h3><%= posts[i].title %></h3>
+                  <p><%= posts[i].caption%></p>
                   <img class="img-fluid" src="<%= posts[i].image%>">
                 </a>
               </li>
@@ -24,6 +25,7 @@
               <li class="col-6 justify-content-between mt-5">
                 <a href="/post/<%= posts[i]._id%>">
                   <h3><%= posts[i].title %></h3>
+                  <p><%= posts[i].caption%></p>
                   <img class="img-fluid" src="<%= posts[i].image%>">
                 </a>
               </li>
@@ -40,6 +42,7 @@
                 <a href="/post/<%= posts[i]._id%>">
                   <h3><%= posts[i].title %></h3>
                   <img class="img-fluid" src="<%= posts[i].image%>">
+                  <p><%= posts[i].caption%></p>
                 </a>
               </li>
           <% }} %>
