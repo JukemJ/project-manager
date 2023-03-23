@@ -1,0 +1,23 @@
+<%- include('partials/header') -%>
+    <div class="container">
+        <form action="/results" enctype="form-data" method="POST">
+            <div class="mb-3">
+                <label for="query" class="form-label">Search!</label>
+                <input type="text" class="form-control" id="query" name="query">
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <br>
+        <div class="row">
+            <% gameInfo.forEach( el => { %>
+            <div class="col-md-3 text-center">
+                <a href="/game/<%= el[0] %>"><img src="<%= el[2] %>" class="img-responsive img-thumbnail" alt="" ></a>
+                <br>
+                <%= el[1] %>
+            </div>
+            <% }) %>
+        </div>
+    </div>
+    
+<%- include('partials/footer') -%>
