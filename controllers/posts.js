@@ -13,7 +13,7 @@ module.exports = {
   getFeed: async (req, res) => {
     try {
       const posts = await Post.find().sort({ createdAt: "desc" }).lean();
-      res.render("feed.ejs", { posts: posts });
+      res.render("feed.ejs", { posts: posts, user: req.user });
     } catch (err) {
       console.log(err);
     }
@@ -27,9 +27,27 @@ module.exports = {
     }
   },
   createPost: async (req, res) => {
+    try { 
+      await Post.create({
+        title: req.body.title,
+        image: '',
+        cloudinaryId: '',
+        caption: req.body.caption,
+        likes: 0,
+        author: req.user.id,
+        completed: false
+      });
+      console.log("Post has been added!");
+      res.redirect("/profile");
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  createPostWithImage: async (req, res) => {
     try {
       // Upload image to cloudinary
-      const result = await cloudinary.uploader.upload(req.file.path);
+      
+      const result = await cloudinary.uploader.upload(req.file.path)     
 
       await Post.create({
         title: req.body.title,
@@ -37,7 +55,8 @@ module.exports = {
         cloudinaryId: result.public_id,
         caption: req.body.caption,
         likes: 0,
-        user: req.user.id,
+        author: req.user.id,
+        completed: false
       });
       console.log("Post has been added!");
       res.redirect("/profile");
@@ -72,5 +91,5 @@ module.exports = {
     } catch (err) {
       res.redirect("/profile");
     }
-  },
-};
+  }
+}
