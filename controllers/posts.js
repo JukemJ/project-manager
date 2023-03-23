@@ -30,8 +30,6 @@ module.exports = {
     try { 
       await Post.create({
         title: req.body.title,
-        image: '',
-        cloudinaryId: '',
         caption: req.body.caption,
         likes: 0,
         author: req.user.id,

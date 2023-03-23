@@ -5,10 +5,10 @@
         <h2>TO DO</h2>
         <ul class="col list-unstyled">
           <% for(var i=0; i<posts.length; i++) {%>
-            <%if(posts[i].user.toString()==user._id.toString()){%>
+            <%if(!posts[i].assigned.length && !posts[i].completed){%>
               <li class="col-6 justify-content-between mt-5">
-                <h3><%= posts[i].title %></h3>
                 <a href="/post/<%= posts[i]._id%>">
+                  <h3><%= posts[i].title %></h3>
                   <img class="img-fluid" src="<%= posts[i].image%>">
                 </a>
               </li>
@@ -20,10 +20,10 @@
         <h2>IN PROGRESS</h2>
         <ul class="col list-unstyled">
           <% for(var i=0; i<posts.length; i++) {%>
-            <%if(posts[i].user.toString()!==user._id.toString()){%>
+            <%if(!posts[i].completed && posts[i].assigned.length){%>
               <li class="col-6 justify-content-between mt-5">
-                <h3><%= posts[i].title %></h3>
                 <a href="/post/<%= posts[i]._id%>">
+                  <h3><%= posts[i].title %></h3>
                   <img class="img-fluid" src="<%= posts[i].image%>">
                 </a>
               </li>
@@ -33,6 +33,17 @@
 
       <div class="col">
         <h2>COMPLETED</h2>
+        <ul class="col list-unstyled">
+          <% for(var i=0; i<posts.length; i++) {%>
+            <%if(posts[i].completed){%>
+              <li class="col-6 justify-content-between mt-5">
+                <a href="/post/<%= posts[i]._id%>">
+                  <h3><%= posts[i].title %></h3>
+                  <img class="img-fluid" src="<%= posts[i].image%>">
+                </a>
+              </li>
+          <% }} %>
+          </ul>
       </div>
 
     </div>
