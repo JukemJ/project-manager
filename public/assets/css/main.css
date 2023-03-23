@@ -99,7 +99,7 @@ input, select, textarea {
 		}
 
 	body, input, select, textarea {
-		color: #fff;
+		color: #555555;
 		font-family: 'Source Sans Pro', sans-serif;
 		font-size: 15pt;
 		font-weight: 300 !important;
@@ -230,7 +230,7 @@ input, select, textarea {
 		background-repeat: repeat-x;
 		height: 100%;
 		left: 0;
-		opacity: 1;
+		opacity: 0.5;
 		position: fixed;
 		top: 0;
 	}
