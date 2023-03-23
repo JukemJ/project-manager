@@ -11,7 +11,7 @@
           action="/post/markAsComplete/<%= post.id %>?_method=PUT"
           method="POST"
         >
-          <button class="btn btn-primary fa fa-heart" type="submit">com</button>
+          <button class="btn btn-primary fa fa-check" type="submit">com</button>
         </form>
         <h3 class="col-3">Likes: <%= post.likes %></h3>
         <form
@@ -19,7 +19,7 @@
           action="/post/markAsIncomplete/<%= post.id %>?_method=PUT"
           method="POST"
         >
-          <button class="btn btn-primary fa fa-heart" type="submit">inc</button>
+          <button class="btn btn-primary fa fa-xmark" type="submit">X</button>
         </form>
         <%if(post.author == user.id){ %>
         <form
