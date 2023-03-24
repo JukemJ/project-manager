@@ -64,6 +64,36 @@ module.exports = {
       console.log(err);
     }
   },
+  assignUserToTask: async (req, res) => {
+    try {
+      await Post.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+          $push: {assigned: [req.user.userName,req.user.color]}
+        }
+      );
+      console.log("Added User!");
+      res.redirect(`/post/${req.params.id}`);
+      //res.redirect("/feed");
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  removeUserFromTask: async (req, res) => {
+    try {
+      await Post.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+          $pullAll: {assigned: [req.user.userName,req.user.color]}
+        }
+      );
+      console.log("Removed User!");
+      res.redirect(`/post/${req.params.id}`);
+      //res.redirect("/feed");
+    } catch (err) {
+      console.log(err);
+    }
+  },
   markAsIncomplete: async (req, res) => {
     try {
       await Post.findOneAndUpdate(

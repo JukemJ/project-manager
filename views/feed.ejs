@@ -17,7 +17,7 @@
           <% }} %>
           </ul>
         </div>
-
+        <%console.log(user)%>
       <div class="col task-list">
         <h2>IN PROGRESS</h2>
         <ul class="col list-unstyled">
@@ -28,6 +28,10 @@
                   <h3><%= posts[i].title %></h3>
                   <p><%= posts[i].caption%></p>
                   <img class="img-fluid task-img" src="<%= posts[i].image%>">
+                  <% for(let x of posts[i].assigned){%>
+                    <%console.log(x)%>
+                    <i class="fa fa-user user-icon" style="background-color: <%=x[1]%>;"></i></a>
+                    <%}%>
                 </a>
               </li>
           <% }} %>

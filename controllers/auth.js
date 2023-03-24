@@ -2,6 +2,7 @@ const passport = require("passport");
 const validator = require("validator");
 const User = require("../models/User");
 
+
 exports.getLogin = (req, res) => {
   if (req.user) {
     return res.redirect("/feed");
@@ -52,7 +53,7 @@ exports.logout = (req, res) => {
     if (err)
       console.log("Error : Failed to destroy the session during logout.", err);
     req.user = null;
-    res.redirect("/");
+    res.redirect("/signup");
   });
 };
 
@@ -66,6 +67,7 @@ exports.getSignup = (req, res) => {
 };
 
 exports.postSignup = (req, res, next) => {
+  //console.log('REQUEST:',req.body)
   const validationErrors = [];
   if (!validator.isEmail(req.body.email))
     validationErrors.push({ msg: "Please enter a valid email address." });
@@ -88,10 +90,10 @@ exports.postSignup = (req, res, next) => {
     userName: req.body.userName,
     email: req.body.email,
     password: req.body.password,
-    platform: req.body.platform
+    color: req.body.color
   });
 
-  console.log(user)
+  //console.log('NEW USER:',user)
 
   User.findOne(
     { $or: [{ email: req.body.email }, { userName: req.body.userName }] },

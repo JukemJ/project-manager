@@ -12,19 +12,34 @@
   </div>
     <div class="row justify-content-center my-3">
       <form
-        class="col-3"
+        class="col-2"
+        action="/post/assignUserToTask/<%= post.id %>?_method=PUT"
+        method="POST"
+      >
+        <button class="btn btn-primary" type="submit">assignUserToTask</button>
+      </form>
+      <form
+        class="col-2"
+        action="/post/removeUserFromTask/<%= post.id %>?_method=PUT"
+        method="POST"
+      >
+        <button class="btn btn-primary" type="submit">removeUserFromTask</button>
+      </form>
+      <form
+        class="col-2"
         action="/post/markAsComplete/<%= post.id %>?_method=PUT"
         method="POST"
       >
         <button class="btn btn-primary" type="submit">Mark as Complete</button>
       </form>
       <form
-        class="col-3"
+        class="col-2"
         action="/post/markAsIncomplete/<%= post.id %>?_method=PUT"
         method="POST"
       >
         <button class="btn btn-primary" type="submit">Mark as Incomplete</button>
       </form>
+      
       <%if(post.author == user.id){ %>
       <form
         action="/post/deletePost/<%= post.id %>?_method=DELETE"
