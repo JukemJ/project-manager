@@ -15,11 +15,11 @@ const PostSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  likes: {
-    type: Number,
+  author: {
+    type: String,
     required: true
   },
-  author: {
+  authorId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },

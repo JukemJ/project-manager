@@ -4,7 +4,7 @@ const User = require("../models/User");
 
 exports.getLogin = (req, res) => {
   if (req.user) {
-    return res.redirect("/profile");
+    return res.redirect("/feed");
   }
   res.render("login", {
     title: "Login",
@@ -88,8 +88,7 @@ exports.postSignup = (req, res, next) => {
     userName: req.body.userName,
     email: req.body.email,
     password: req.body.password,
-    platform: req.body.platform,
-    games: []
+    platform: req.body.platform
   });
 
   console.log(user)

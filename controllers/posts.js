@@ -31,13 +31,13 @@ module.exports = {
       await Post.create({
         title: req.body.title,
         caption: req.body.caption,
-        likes: 0,
-        author: req.user.id,
+        author: req.user.userName,
+        authorId: req.user.id,
         completed: false,
-        assigned: [req.user.id]
+        assigned: []
       });
       console.log("Post has been added!");
-      res.redirect("/profile");
+      res.redirect("/feed");
     } catch (err) {
       console.log(err);
     }
@@ -53,13 +53,13 @@ module.exports = {
         image: result.secure_url,
         cloudinaryId: result.public_id,
         caption: req.body.caption,
-        likes: 0,
-        author: req.user.id,
+        author: req.user.userName,
+        authorId: req.user.id,
         completed: false,
-        assigned: [req.user.id]
+        assigned: []
       });
       console.log("Post has been added!");
-      res.redirect("/profile");
+      res.redirect("/feed");
     } catch (err) {
       console.log(err);
     }
@@ -73,7 +73,8 @@ module.exports = {
         }
       );
       console.log("Marked Incomplete!");
-      res.redirect(`/post/${req.params.id}`);
+      //res.redirect(`/post/${req.params.id}`);
+      res.redirect("/feed");
     } catch (err) {
       console.log(err);
     }
@@ -87,7 +88,7 @@ module.exports = {
         }
       );
       console.log("Marked Complete!");
-      res.redirect(`/post/${req.params.id}`);
+      res.redirect("/feed");
     } catch (err) {
       console.log(err);
     }

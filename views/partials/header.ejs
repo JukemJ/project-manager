@@ -27,9 +27,15 @@
   </head>
   <body>
     <header class="container">
-      <div class="text-center">
-        <h1 class=""><a href="/profile">Project Manager</a></h1>
-        <span>Keep track of your workflow!</span>
+      <div class="row mt-3">
+        <div class="col-6">
+          <h1 class=""><a href="/feed">Project Manager</a></h1>
+          <span>Keep track of your workflow!</span>
+        </div>
+        <div class="col-6 text-end">
+          <a href="/profile"><h3><%= user.userName %></h3>
+          <strong>Profile</strong></a>
+        </div>
       </div>
     </header>
   </body>

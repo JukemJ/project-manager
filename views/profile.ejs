@@ -3,23 +3,22 @@
   <div class="row mt-5">
       <div class="col-6">
         <h2>Your Tasks</h2>
-        <ul class="row list-unstyled">
+        <ul class="col list-unstyled">
           <% for(var i=0; i<posts.length; i++) {%>
             <% if(!posts[i].completed){%>
-              <li class="col-6 justify-content-between mt-5">
+              <li class="col justify-content-between my-2 task-item">
                 <a href="/post/<%= posts[i]._id%>">
                   <h3><%= posts[i].title %></h3>
-                  <img class="img-fluid" src="<%= posts[i].image%>">
+                  <p><%= posts[i].caption%></p>
+                  <img class="img-fluid task-img" src="<%= posts[i].image%>">
                 </a>
               </li>
             <% } %>
           <% } %>
         </ul>
-        <div class="row justify-content-center mt-5">
-          <a class="btn btn-primary" href="/feed">Return to Task List</a>
-        </div>  
+          
       </div>  
-    <div class="col-6">
+    <div class="col-5">
       
       <div class="">
         <h2>Create a Task</h2>
@@ -40,7 +39,10 @@
           <button type="submit" class="btn btn-primary" value="Upload" formaction="/post/createPostWithImage">Submit with image</button>
         </form>
       </div>
-      <div class="mt-5">
+      <div class="row justify-content-center mt-3">
+        <a class="btn btn-primary" href="/feed">Return to Task List</a>
+      </div>
+      <div class="my-3">
         <p><strong>User Name</strong>: <%= user.userName %></p>
         <p><strong>Email</strong>: <%= user.email %></p>
         <a href="/logout" class="col-3 btn btn-primary">Logout</a>

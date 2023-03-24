@@ -1,48 +1,50 @@
 <%- include('partials/header') -%>
   <div class="container">
-    <div class="row">
-      <div class="col">
+    <div class="row justify-content-evenly">
+      <div class="col task-list">
         <h2>TO DO</h2>
         <ul class="col list-unstyled">
           <% for(var i=0; i<posts.length; i++) {%>
             <%if(!posts[i].assigned.length && !posts[i].completed){%>
-              <li class="col-6 justify-content-between mt-5">
-                <a href="/post/<%= posts[i]._id%>">
+              <a href="/post/<%= posts[i]._id%>">
+                <li class="col justify-content-between my-2 task-item grow">
                   <h3><%= posts[i].title %></h3>
+                  <p><%= posts[i].author%></p>
                   <p><%= posts[i].caption%></p>
-                  <img class="img-fluid" src="<%= posts[i].image%>">
-                </a>
-              </li>
+                  <img class="img-fluid task-img" src="<%= posts[i].image%>">
+                </li>
+              </a>
           <% }} %>
           </ul>
         </div>
 
-      <div class="col">
+      <div class="col task-list">
         <h2>IN PROGRESS</h2>
         <ul class="col list-unstyled">
           <% for(var i=0; i<posts.length; i++) {%>
             <%if(!posts[i].completed && posts[i].assigned.length){%>
-              <li class="col-6 justify-content-between mt-5">
+              <li class="col justify-content-evenly my-2 task-item grow">
                 <a href="/post/<%= posts[i]._id%>">
                   <h3><%= posts[i].title %></h3>
                   <p><%= posts[i].caption%></p>
-                  <img class="img-fluid" src="<%= posts[i].image%>">
+                  <img class="img-fluid task-img" src="<%= posts[i].image%>">
                 </a>
               </li>
           <% }} %>
           </ul>
       </div>
 
-      <div class="col">
+      <div class="col task-list">
         <h2>COMPLETED</h2>
         <ul class="col list-unstyled">
           <% for(var i=0; i<posts.length; i++) {%>
             <%if(posts[i].completed){%>
-              <li class="col-6 justify-content-between mt-5">
+              <li class="col justify-content-between my-2 task-item grow">
                 <a href="/post/<%= posts[i]._id%>">
                   <h3><%= posts[i].title %></h3>
-                  <img class="img-fluid" src="<%= posts[i].image%>">
                   <p><%= posts[i].caption%></p>
+                  <img class="img-fluid task-img" src="<%= posts[i].image%>">
+                  
                 </a>
               </li>
           <% }} %>
