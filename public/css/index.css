@@ -534,7 +534,7 @@ input, select, textarea {
 		-moz-animation: header 1s 2.25s forwards;
 		-webkit-animation: header 1s 2.25s forwards;
 		-ms-animation: header 1s 2.25s forwards;
-		animation: header 1s 2.25s forwards;
+		animation: header 1s 1s forwards;
 		-moz-backface-visibility: hidden;
 		-webkit-backface-visibility: hidden;
 		-ms-backface-visibility: hidden;
@@ -596,7 +596,7 @@ input, select, textarea {
 					-moz-animation-delay: 2.5s;
 					-webkit-animation-delay: 2.5s;
 					-ms-animation-delay: 2.5s;
-					animation-delay: 2.5s;
+					animation-delay: 1.5s;
 				}
 
 				#header nav li:nth-child(2) {
