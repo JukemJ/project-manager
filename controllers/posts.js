@@ -69,12 +69,12 @@ module.exports = {
       await Post.findOneAndUpdate(
         { _id: req.params.id },
         {
-          $push: {assigned: [req.user.userName,req.user.color]}
+          $push: {assigned: req.user.color}
         }
       );
       console.log("Added User!");
-      res.redirect(`/post/${req.params.id}`);
-      //res.redirect("/feed");
+      //res.redirect(`/post/${req.params.id}`);
+      res.redirect("/feed");
     } catch (err) {
       console.log(err);
     }
@@ -84,12 +84,12 @@ module.exports = {
       await Post.findOneAndUpdate(
         { _id: req.params.id },
         {
-          $pullAll: {assigned: [req.user.userName,req.user.color]}
+          $pullAll: {assigned: [req.user.color]}
         }
       );
       console.log("Removed User!");
-      res.redirect(`/post/${req.params.id}`);
-      //res.redirect("/feed");
+      //res.redirect(`/post/${req.params.id}`);
+      res.redirect("/feed");
     } catch (err) {
       console.log(err);
     }
@@ -134,7 +134,7 @@ module.exports = {
       // Delete post from db
       await Post.deleteOne({ _id: req.params.id });
       console.log("Deleted Post");
-      res.redirect("/profile");
+      res.redirect("/feed");
     } catch (err) {
       console.log(err)
       res.redirect("/profile");

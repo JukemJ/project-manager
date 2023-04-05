@@ -1,55 +1,59 @@
 <%- include('partials/header') -%>
 <div class="container">
   <div class="row justify-content-center mt-5">
-    <div class="col-6 post">
-      <h2><%= post.title %></h2>
-      <p><%= post.caption %></p>
-    </div>
-    <div class="col-4">
-      <img class="img-fluid post" src="<%= post.image%>" />
-      
+    <div class="col-7">
+      <%if(post.image){%>
+      <a href="<%= post.image%>"><img class="img-fluid post" src="<%= post.image%>"></a>
+      <%}%>
+      <div class="mt-2 p-2 post">
+        <h2><%= post.title %></h2>
+        <p><%= post.caption %></p>
+      </div>
     </div>
   </div>
-    <div class="row justify-content-center my-3">
-      <form
-        class="col-2"
-        action="/post/assignUserToTask/<%= post.id %>?_method=PUT"
-        method="POST"
-      >
-        <button class="btn btn-primary" type="submit">assignUserToTask</button>
-      </form>
-      <form
-        class="col-2"
-        action="/post/removeUserFromTask/<%= post.id %>?_method=PUT"
-        method="POST"
-      >
-        <button class="btn btn-primary" type="submit">removeUserFromTask</button>
-      </form>
-      <form
-        class="col-2"
-        action="/post/markAsComplete/<%= post.id %>?_method=PUT"
-        method="POST"
-      >
-        <button class="btn btn-primary" type="submit">Mark as Complete</button>
-      </form>
-      <form
-        class="col-2"
-        action="/post/markAsIncomplete/<%= post.id %>?_method=PUT"
-        method="POST"
-      >
-        <button class="btn btn-primary" type="submit">Mark as Incomplete</button>
-      </form>
-      
-      <%if(post.author == user.id){ %>
-      <form
-        action="/post/deletePost/<%= post.id %>?_method=DELETE"
-        method="POST"
-        class="col-3"
-      >
-        <button class="btn btn-primary fa fa-trash" type="submit"></button>
-      </form>
-      <%}%>
-    </div>
+
+  <div class="row justify-content-center my-4">
+    
+    <form
+      class="col"
+      action="/post/assignUserToTask/<%= post.id %>?_method=PUT"
+      method="POST"
+    >
+      <button class="btn btn-primary" type="submit">assignUserToTask</button>
+    </form>
+    <form
+      class="col"
+      action="/post/removeUserFromTask/<%= post.id %>?_method=PUT"
+      method="POST"
+    >
+      <button class="btn btn-primary" type="submit">removeUserFromTask</button>
+    </form>
+    <form
+      class="col"
+      action="/post/markAsComplete/<%= post.id %>?_method=PUT"
+      method="POST"
+    >
+      <button class="btn btn-primary" type="submit">Mark as Complete</button>
+    </form>
+    <form
+      class="col"
+      action="/post/markAsIncomplete/<%= post.id %>?_method=PUT"
+      method="POST"
+    >
+      <button class="btn btn-primary" type="submit">Mark as Incomplete</button>
+    </form>
+    
+    <%if(post.author == user.userName){ %>
+    <form
+      action="/post/deletePost/<%= post.id %>?_method=DELETE"
+      method="POST"
+      class="col-3"
+    >
+      <button class="btn btn-primary" type="submit">Delete</button>
+    </form>
+    <%}%>
+  
+  </div>
     <!-- <div class="col-6 mt-5">
       <a class="btn btn-primary" href="/profile">Return to Profile</a>
       <a class="btn btn-primary" href="/feed">Return to Feed</a>

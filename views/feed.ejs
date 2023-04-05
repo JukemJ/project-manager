@@ -17,23 +17,23 @@
           <% }} %>
           </ul>
         </div>
-        <%console.log(user)%>
+        
       <div class="col task-list">
         <h2>IN PROGRESS</h2>
         <ul class="col list-unstyled">
           <% for(var i=0; i<posts.length; i++) {%>
             <%if(!posts[i].completed && posts[i].assigned.length){%>
-              <li class="col justify-content-evenly my-2 task-item grow">
-                <a href="/post/<%= posts[i]._id%>">
+              <a href="/post/<%= posts[i]._id%>">
+                <li class="col justify-content-evenly my-2 task-item grow">
                   <h3><%= posts[i].title %></h3>
                   <p><%= posts[i].caption%></p>
                   <img class="img-fluid task-img" src="<%= posts[i].image%>">
                   <% for(let x of posts[i].assigned){%>
-                    <%console.log(x)%>
-                    <i class="fa fa-user user-icon" style="background-color: <%=x[1]%>;"></i></a>
+                    
+                    <i class="fa fa-user user-icon" style="background-color: <%=x%>;"></i>
                     <%}%>
-                </a>
-              </li>
+                </li>
+              </a>
           <% }} %>
           </ul>
       </div>
